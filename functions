@@ -1,0 +1,51 @@
+#Este é um exemplo utilizando o banco Firebird
+
+function selectBanco(){ 
+  var AConnection;
+  AConnection = ADO.CreateADOQuery();
+  AConnection.ConnectionString="DRIVER=Firebird/InterBase(r) driver;UID=SYSDBA;PWD=masterkey; DBNAME=192.168.1.100:/work/19.01/banco.fdb"; 
+  AConnection.SQL = "SELECT ID, URL FROM TBSERVICO";
+  AConnection.Open();
+  AConnection.First();
+  while(!AConnection.EOF){
+    Log.message("ID");
+    Log.message(AConnection.FieldByName("id").Value);
+    Log.message("URL");
+    Log.message(AConnection.FieldByName("url").Value);
+    AConnection.Next();
+  }
+  AConnection.Close();
+}  
+
+function insertBanco(){ 
+ var AConnection 
+  AConnection = ADO.CreateADOConnection();
+  AConnection.ConnectionString="DRIVER=Firebird/InterBase(r) driver;UID=SYSDBA;PWD=masterkey; DBNAME=192.168.1.100:/work/19.01/banco.fdb"; 
+  AConnection.LoginPrompt = false; 
+  AConnection.Open();
+  AConnection.Execute_("insert into tbservico (id,url) values (03,'www.google.com.br')");  
+  AConnection.Close(); 
+}
+function updateBanco(){ 
+ var AConnection 
+  AConnection = ADO.CreateADOConnection();
+  AConnection.ConnectionString="DRIVER=Firebird/InterBase(r) driver;UID=SYSDBA;PWD=masterkey; DBNAME=192.168.1.100:/work/19.01/banco.fdb"; 
+  AConnection.LoginPrompt = false; 
+  AConnection.Open();
+  AConnection.Execute_("update tbservico set id=02, url='www.google.com.br'");  
+  AConnection.Close(); 
+}
+function deleteBanco(){ 
+ var AConnection 
+  AConnection = ADO.CreateADOConnection();
+  AConnection.ConnectionString="DRIVER=Firebird/InterBase(r) driver;UID=SYSDBA;PWD=masterkey; DBNAME=192.168.1.100:/work/19.01/banco.fdb"; 
+  AConnection.LoginPrompt = false; 
+  AConnection.Open();
+  AConnection.Execute_("delete from tbservico");  
+  AConnection.Close(); 
+}
+
+module.exports.selectBanco = selectBanco;
+module.exports.insertBanco = insertBanco;
+module.exports.updateBanco = updateBanco;
+module.exports.deleteBanco = deleteBanco;
