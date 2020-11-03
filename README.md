@@ -1,4 +1,6 @@
-# testCompleteSQL
-Functions: Select, Insert, Update and Delete in TestComplete.
-Exemplos de funções de Select, Insert, Update e Delete para utilizar no TestComplete.
+# testComplete connection database
+
+Functions: Select, Insert, Update and Delete in TestComplete. </br> 
+
+Dentro do arquivo "Functions" contém os exemplos e neles estou utilizando o banco de dados Firebird.  
 
